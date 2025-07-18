@@ -7,6 +7,7 @@
     <div class="row">
 
         <div class="container-fluid">
+
             <div class="row">
                 <!-- Users -->
                 <div class="col-xl-3 col-md-6 mb-4">
@@ -59,6 +60,7 @@
                                                 Delete
                                             </button>
                                         </form>
+                                        <a href="/user/show?id=${user.id}" class="btn btn-sm btn-primary">Show</a>
                                     </td>
                                 </tr>
                             </c:forEach>

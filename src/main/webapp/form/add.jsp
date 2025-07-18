@@ -30,9 +30,12 @@
                            id="password" name="password"
                            placeholder="password">
                 </div>
-                <div>
-                    <button type="submit" class="btn btn-primary btn-block">
-                        Create
+                <div class="d-flex justify-content-end gap-2">
+                    <a href="/user/list" class="btn btn-danger mr-2">
+                        <i class="fas fa-arrow-left"></i> Cancel
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        Submit
                     </button>
                 </div>
             </form>

@@ -18,9 +18,8 @@ public class UserUpdate extends HttpServlet {
 
         Optional<User> user = USER_DAO.read(Long.valueOf(request.getParameter(("id"))));
 
-        if (user.isPresent()) {
-            request.setAttribute("user", user.get());
-        }
+        user.ifPresent(value -> request.setAttribute("user", value));
+
         getServletContext().getRequestDispatcher("/form/user.jsp").forward(request, response);
     }
 
