@@ -2,7 +2,7 @@
 <footer class="sticky-footer bg-white">
   <div class="container my-auto">
     <div class="copyright text-center my-auto">
-      <span>Copyright &copy; User CRUD 2025 coderslab</span>
+      <span>Copyright &copy; User CRUD 2025 coderslab bootcamp</span>
     </div>
   </div>
 </footer>

@@ -14,10 +14,9 @@ public class UserDelete extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         var userDao = UserDao.getInstance();
-        Long id = Long.valueOf(request.getParameter("id"));
+        var id = Long.valueOf(request.getParameter("id"));
 
         userDao.delete(id);
         response.sendRedirect("/user/list");
-
     }
 }

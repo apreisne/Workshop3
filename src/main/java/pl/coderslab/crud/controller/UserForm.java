@@ -14,7 +14,7 @@ public class UserForm extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        getServletContext().getRequestDispatcher("/form/user.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/form/add.jsp").forward(request, response);
 
     }
 
@@ -24,12 +24,15 @@ public class UserForm extends HttpServlet {
         var userDao = UserDao.getInstance();
         var user = new User();
 
-        user.setPassword(request.getParameter("password"));
-        user.setUsername(request.getParameter("username"));
-        user.setEmail(request.getParameter("email"));
+        var username = request.getParameter("username");
+        var password = request.getParameter("password");
+        var email = request.getParameter("email");
+
+        user.setPassword(password);
+        user.setUsername(username);
+        user.setEmail(email);
 
         userDao.create(user);
-
 
         response.sendRedirect("/user/list");
 
