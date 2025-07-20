@@ -21,6 +21,7 @@ public class UserShow extends HttpServlet {
 
         try {
             id = Long.valueOf(request.getParameter("id"));
+
         } catch (NumberFormatException e) {
             request.setAttribute("notFound", true);
         }

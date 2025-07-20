@@ -17,6 +17,7 @@ public class UserDelete extends HttpServlet {
         var id = Long.valueOf(request.getParameter("id"));
 
         userDao.delete(id);
+        request.getSession().setAttribute("success", "User removed successfully!");
         response.sendRedirect("/user/list");
     }
 }

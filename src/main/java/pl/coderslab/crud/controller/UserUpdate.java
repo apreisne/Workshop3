@@ -13,14 +13,35 @@ import java.util.Optional;
 public class UserUpdate extends HttpServlet {
 
     public static final UserDao USER_DAO = UserDao.getInstance();
+    public static final String USER_NOT_FOUND = "User not found";
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Optional<User> user = USER_DAO.read(Long.valueOf(request.getParameter(("id"))));
+        var param = request.getParameter("id");
 
-        user.ifPresent(value -> request.setAttribute("user", value));
+        if (param == null) {
+            setErrorAttribute(request);
+            getServletContext().getRequestDispatcher("/form/edit.jsp").forward(request, response);
+            return;
+        }
 
-        getServletContext().getRequestDispatcher("/form/user.jsp").forward(request, response);
+        try {
+            var id = Long.valueOf(param);
+            Optional<User> user = USER_DAO.read(id);
+
+            if (user.isPresent()) {
+                request.setAttribute("user", user.get());
+            } else {
+                setErrorAttribute(request);
+            }
+
+        } catch (NumberFormatException e) {
+            setErrorAttribute(request);
+        }
+
+
+        getServletContext().getRequestDispatcher("/form/edit.jsp").forward(request, response);
     }
 
     @Override
@@ -34,7 +55,13 @@ public class UserUpdate extends HttpServlet {
         user.setId(Long.valueOf(request.getParameter("id")));
 
         USER_DAO.updateUser(user);
+
+        request.getSession().setAttribute("success", "User updated successfully!");
         response.sendRedirect("/user/list");
 
+    }
+
+    private static void setErrorAttribute(HttpServletRequest request) {
+        request.setAttribute("error", USER_NOT_FOUND);
     }
 }

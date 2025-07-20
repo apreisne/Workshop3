@@ -35,6 +35,10 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
+                        <c:if test="${not empty sessionScope.success}">
+                            <div class="alert alert-success">${sessionScope.success}</div>
+                            <c:remove var="success" scope="session"/>
+                        </c:if>
                         <table class="table table-bordered mb-0">
                             <thead>
                             <tr>

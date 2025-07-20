@@ -34,6 +34,7 @@ public class UserForm extends HttpServlet {
 
         userDao.create(user);
 
+        request.getSession().setAttribute("success", "User created successfully!");
         response.sendRedirect("/user/list");
 
     }
